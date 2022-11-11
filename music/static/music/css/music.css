@@ -1,0 +1,79 @@
+#music_content{
+    width: 1100px;
+    height: 1900px;
+    background-color: rgba(255, 255, 255, 0.77);
+    position: relative;
+    top: 200px;
+    border-radius: 40px;
+margin: auto;
+}
+#music_content_inner{
+    width: 80%;
+    height: 90%;
+    margin: auto;
+    position: relative;
+    top: 50px;
+}
+/*title*/
+#music_content_title{
+    display: flex;
+    justify-content: center;
+}
+#music_content_title span{
+    color: black;
+    font-size: 25px;
+    width: 25%;
+    text-align: center;
+}
+#music_content_content{
+    position: relative;
+    top: 50px;
+}
+/*每一首歌曲div*/
+.music_song_div{
+    position:relative;
+    width: 100%;
+    height: 65px;
+    margin-top: 15px;
+    background-color: rgba(0, 136, 255, 0.49);
+        border-bottom: 1px solid white;
+    border-radius: 15px;
+
+}
+
+.music_song_div:hover{
+    transform: scale(1.1);
+}
+
+.music_song_div_span{
+    vertical-align:middle;
+    display: flex;
+    align-items: center;
+    width: 25%;
+    height: 100%;
+    justify-content: center;
+    float: left;
+
+}
+
+
+/*导航*/
+.col-md-4{
+
+    position: relative;
+    top: 130px;
+}
+.col-md-4 a{
+        color: black;
+    font-size: 22px;
+}
+.music_nav_li:hover{
+
+    transform: scale(1.5);
+    font-weight: bold;
+}
+
+#content_white{
+    width: 100%;
+    height: 150px;
+}

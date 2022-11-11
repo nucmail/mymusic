@@ -1,0 +1,42 @@
+{% extends 'index.html' %}
+{% block nav %}
+
+{{ block.super }}
+{% endblock nav %}
+            {% block main_block %}
+                <div id = "content_top_content">
+
+                    {#       左边的导航栏         #}
+                    <div id = "content_top_nav">
+                        <div ><a href = "index"  >首页</a></div>
+                        <div class="nav_line"><a href = "index_music" id="content_top_selected">基于音乐</a></div>
+                        <div class="nav_line"><a href = "index_user">基于用户</a></div>
+                        <div class="nav_line"><a href = "index_svd">基于SVD</a></div>
+                    </div>
+
+                    {#       对应的歌曲栏         #}
+                    <div  id = "content_top_song">
+                        <div id = "content_top_song_content">
+                            {% block content_top_song %}
+                                {% for item in song_list %}
+
+                                        <div id = "content_top_song_div">
+                                            <div class = "content_top_title_span">
+
+                                            </div>
+                                            <a href="{% url 'song_info'%}?songid={{item.song_id}}"  >
+                                                <div class = "content_top_song_span" id = "content_top_song_title">
+                                                    <td>{{ item.title }}</td>
+                                                </div>
+                                            </a>
+                                            <div class = "content_top_song_span" id = "content_top_song_gxl">
+                                                <td>{{ item.song_id }}</td>
+                                            </div>
+                                        </div>
+
+                                {% endfor item in coldstar %}
+                            {% endblock content_top_song %}
+                        </div>
+                    </div>
+                </div>
+            {% endblock main_block %}

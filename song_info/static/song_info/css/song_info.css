@@ -1,0 +1,243 @@
+#song_info_content{
+    position: relative;
+    margin: auto;
+    top: 150px;
+    width: 800px;
+    height: 600px;
+    background-color: rgba(239, 235, 235, 0.66);
+    z-index: 1;
+    border-radius: 30px;
+
+
+}
+#song_info_content_inner{
+    width: 90%;
+    height: 55%;
+    position: relative;
+    left: 30px;
+    top: 90px;
+    color: black;
+       display: flex;
+    justify-content: center;
+        align-items: center;
+        background-color: rgba(21, 148, 246, 0.45);
+        border-radius: 30px;
+}
+#song_info_content_img{
+    width: 150px;
+    height: 150px;
+    background:url('img/image.jpg');
+    background-size: 150px 150px;
+    border-radius: 20px;
+    position: relative;
+    left: 50px;
+}
+#song_info_content_info{
+    position: relative;
+    left: 30px;
+    width: 500px;
+    top: -80px;
+     height: 65px;
+
+}
+
+
+/*            内容                    */
+.song_info_content_div{
+        width: 500px;
+    height: 55px;
+    display: flex;
+    justify-content: space-evenly;
+
+}
+.song_info_content_title{
+    font-size: 27px;
+    font-weight: bold;
+    width: 200px;
+    height: 100%;
+    display: flex;
+    justify-content:right;
+    align-items: center;
+}
+.song_info_content_text{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    font-size: 22px;
+    width: 250px;
+    height: 100%;
+}
+
+
+#song_info_foot{
+	width: 100%;
+	height: 100px;
+	position: relative;
+	top: 100px;
+	display: flex;
+	justify-content: space-evenly;
+
+}
+
+/*         收藏          */
+#song_info_like{
+	display: flex;
+	align-items: center;
+}
+.favorite{
+    width: 90px;
+    height: 40px;
+    line-height: 30px;
+    font-size: 14px;
+    color: #999;
+	display: flex;
+	justify-content: center;
+}
+.favorite>button.favo{
+    display: inline-block;
+    vertical-align: top;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+}
+.favo{
+    border: none;
+    background: none;
+}
+.favo-default{
+    background: url(img/favo.png) no-repeat center top;
+    background-size: 35px 35px;
+}
+.favo-hover{
+    background: url(img/favo-hover.png) no-repeat center top;
+    background-size: 35px 35px;
+}
+
+
+
+/*         评分          */
+#song_info_score{
+
+}
+#song_info_score_inner{
+    width: 400px;
+	height: 100px;
+    align-items: center;
+}
+#star_content{
+    width: 400px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+}
+#star_button{
+    width: 180px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    top: 30px;
+}
+#like_button{
+    width: 70px;
+    height: 30px;
+    float: left;
+    color: #232323;
+    font-size: 16px;
+    border-radius: 10px;
+    border: none;
+}
+#like_button:hover{
+    transform: scale(1.1);
+    background-color: rgba(224, 74, 74, 0.91);
+    color: white;
+ }
+
+
+#pingStar{
+    width: 180px;
+    height: 40px;
+    position: relative;
+    top: 20px;
+}
+.starts ul{
+    float:left;
+}
+.starts ul li{
+    cursor: pointer;
+    list-style: none;
+    width:32px;
+    height:21px;
+    float:left;
+    background:url(img/stark2.png) no-repeat;
+
+}
+#dir{
+    position: relative;
+    top: -20px;
+    left: 160px;
+    font-size: 19px;
+    color: black;
+
+}
+.starts ul li.on{
+    background:url(img/stars2.png) no-repeat;
+}
+.starts ul span{
+    display:inline;
+    float:left;
+    padding-left:10px;
+    height:21px;
+    line-height:21px;
+}
+
+
+#song_info_review_area{
+    width: 980px;
+    height: 300px;
+    position: relative;
+    margin: auto;
+    top: 200px;
+    display: flex;
+    justify-content: center;
+}
+
+#review_text{
+    width: 500px;
+    height: 200px;
+}
+
+#review_button{
+    width: 100px;
+    height: 50px;
+}
+
+#song_info_review{
+    width: 980px;
+    min-height: 500px;
+    position: relative;
+    top: 200px;
+    margin: auto;
+}
+#song_info_review_content{
+    margin: auto;
+    min-height: 100px;
+    background-color: rgb(13, 89, 205);
+    border-radius: 30px;
+    margin-top: 10px;
+}
+
+#song_info_review_content_useID{
+    width: 200px;
+    height: 60px;
+    position: relative;
+    left: 100px;
+    top: 20px;
+}
+
+#song_info_review_content_content{
+    min-height: 60px;
+    width: 860px;
+    margin: auto;
+
+}

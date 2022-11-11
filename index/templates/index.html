@@ -1,0 +1,203 @@
+{% extends 'template.html' %}
+{% load static  %}
+
+<html>
+<head>
+	<title>Music System</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+
+    {% load staticfiles %}
+    <link rel="stylesheet" href={% static 'css/content_top.css' %}/>
+</head>
+
+
+
+<body text="#FFFFFF">
+
+
+{#------------------------------     导航       ------------------------------- #}
+{% block nav %}
+<div class="nav">
+        <div class="container">
+          <div class="menu fhNav">
+            <div class="bottomLine" id = "bottomLine_1"></div>
+            <ul class="inner-nav clear">
+            <li class="selectedNav"><a href="{% url "index" %}">首页</a></li>
+{#            <li><a href="{% url "music" %}?page=1">曲库</a></li>#}
+            <li><a href="music?page=1">曲库</a></li>
+            <li ><a href="{% url "singer" %}">搜索</a></li>
+{#            <li><a href="{% url "music" %}">曲库</a></li>#}
+
+
+            {% if user.is_authenticated %}
+                <li id = "index_user"><a href="{% url "personal_show" %}">个人中心{{ userid }}</a></li>
+            {% else %}
+                <li id = "index_user"><a href="{% url "login" %}">个人中心</a></li>
+            {% endif %}
+
+
+            </ul>
+        </div>
+        </div>
+</div>
+<div class="index_search">
+
+        <form role="search" action="{% url 'search' %}" method="get">
+            {% csrf_token %}
+                <input type="search"
+                    id="index_search_text"
+                    placeholder="请输入歌名或歌手名："
+                    name = "search_text"
+                    required
+                >
+
+            <button type="submit" id = "index_search_button">
+                <img src="{% static 'image/search.png' %}">
+            </button>
+        </form>
+
+</div>
+{% endblock nav %}
+
+	<hr width="100%" size="1" color="#FFFFFF" noshade="noshade">
+
+
+
+{% block every_content %}
+{#-------------------------------   轮播图     ---------------------------------- #}
+	<div id = "lunbo">
+		<ul id="banner"></ul>
+	</div>
+
+
+
+<!--------------------------       内容           ------------------------------------>
+	<div id = "content">
+
+{#  -----------------            推荐模块            ---------------------#}
+        <div id = "content_top">
+
+            {% block main_block %}
+                <div id = "content_top_content">
+
+                    {#       左边的导航栏         #}
+                    <div id = "content_top_nav">
+                        <div ><a href = "index" id="content_top_selected" >首页</a></div>
+                        <div class="nav_line"><a href = "index_music">基于音乐</a></div>
+                        <div class="nav_line"><a href = "index_user">基于用户</a></div>
+                        <div class="nav_line"><a href = "index_svd">基于SVD</a></div>
+                    </div>
+
+                    {#       对应的歌曲栏         #}
+                    <div  id = "content_top_song">
+                        <div id = "content_top_song_content">
+                            {% block content_top_song %}
+                                {% for item in song_list %}
+
+                                        <div id = "content_top_song_div">
+                                            <div class = "content_top_title_span">
+
+                                            </div>
+                                            <a href="{% url 'song_info'%}?songid={{item.song_id}}"  >
+                                                <div class = "content_top_song_span" id = "content_top_song_title">
+                                                    <td>{{ item.title }}</td>
+                                                </div>
+                                            </a>
+                                            <div class = "content_top_song_span" id = "content_top_song_gxl">
+                                                <td>{{ item.song_id }}</td>
+                                            </div>
+                                        </div>
+
+                                {% endfor item in coldstar %}
+                            {% endblock content_top_song %}
+                        </div>
+                    </div>
+                </div>
+            {% endblock main_block %}
+
+        </div>
+
+
+{#  -----------------            歌曲模块            ---------------------#}
+
+		<hr align="left" width="100%" size="0.009" color="#FFFFFF" noshade="noshade">
+		<br />
+
+		<table width="100%" border="0" cellpadding="6" cellspacing="6">
+
+			<tr>
+				<td>
+					<table border="0" cellpadding="5">
+
+						<tr align="center">
+
+							<th>
+								<p>
+
+								</p><a href="chart.html">
+									<font color="#FFFFFF" face="等线" size="8"><b>热歌榜>></b></font>
+								</a>
+
+							</th>
+						</tr>
+
+                        {% for item in hot_list %}
+                            <tr>
+                                <td>
+                                    <font color="#DC143C" face="等线" size="6"><b>{{ forloop.counter }}</b></font>
+                                    <a href="{% url 'song_info'%}?songid={{item.song_id}}"  >
+                                        <font color="#FFFFFF" face="等线" size="4">{{ item.song_title }}</font>
+                                    </a>
+                                    <p><a href="discovery.html">
+                                            <font color="#A9A9A9" face="微软雅黑" size="2">播放数：{{ item.fractional_play_count }}</font>
+                                        </a></p>
+                                </td>
+                            </tr>
+                        {% endfor %}
+
+
+					</table>
+				</td>
+
+				<td>
+					<table border="0" cellpadding="5">
+						<br align="center">
+							<th>
+								<p>
+
+								</p><a href="chart.html">
+									<font color="#FFFFFF" face="等线" size="8"><b>新歌榜>></b></font>
+								</a>
+
+							</th>
+						</tr>
+                        {% for item in new_list %}
+                            <tr>
+                                <td>
+                                    <font color="#DC143C" face="等线" size="6"><b>{{ forloop.counter }}</b></font>
+                                    <a href="{% url 'song_info'%}?songid={{item.song_id}}"  >
+                                        <font color="#FFFFFF" face="等线" size="4">{{ item.title }}</font>
+                                    </a>
+                                    <p><a href="discovery.html">
+                                            <font color="#A9A9A9" face="微软雅黑" size="2">出版年份：{{ item.age }}</font>
+                                        </a></p>
+                                </td>
+                            </tr>
+                        {% endfor %}
+					</table>
+				</td>
+			</tr>
+		</table>
+	</div>
+{% endblock every_content %}
+</body>
+{#******************************   JS     ********************************* #}
+
+<script  type="text/javascript" src={% static "index/js/jquery.min.js" %}></script>
+<script  type="text/javascript" src={% static "index/js/Nav.js" %}></script>
+<script  type="text/javascript" src={% static "index/js/lunbo.js" %}></script>
+<script  type="text/javascript" src={% static "js/backgroud.js" %} ></script>
+
+</html>

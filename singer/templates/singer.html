@@ -1,0 +1,38 @@
+{% extends 'template.html' %}
+{% block nav %}
+    {% load staticfiles %}
+<div class="nav">
+      <div class="container">
+        <div class="menu fhNav">
+            <div class="bottomLine" id = "bottomLine_3"></div>
+            <ul class="inner-nav clear">
+              <li><a href="{% url "index" %}">首页</a></li>
+              <li><a href="{% url "music" %}">曲库</a></li>
+              <li  class="selectedNav"><a href="{% url "singer" %}">搜索</a></li>
+            {% if user.is_authenticated %}
+                <li id = "index_user"><a href="{% url "personal_show" %}">个人中心{{ userid }}</a></li>
+            {% else %}
+                <li id = "index_user"><a href="{% url "login" %}">个人中心</a></li>
+            {% endif %}
+            </ul>
+        </div>
+      </div>
+    </div>
+<div class="index_search">
+
+        <form role="search" action="{% url 'search' %}" method="get">
+            {% csrf_token %}
+            <input type="search"
+                   id="index_search_text"
+                   placeholder="请输入歌名或歌手名："
+                   name = "search_text"
+                    required
+            >
+
+            <button type="submit" id = "index_search_button"><img src="{% static 'image/search.png' %}"></button>
+        </form>
+
+</div>
+{% endblock nav %}
+{% block every_content %}
+{% endblock every_content %}

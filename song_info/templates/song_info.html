@@ -1,0 +1,155 @@
+{% extends 'template.html' %}
+<html>
+<head>
+	<title>Music System</title>
+    <base href="/">
+    <meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    {% load staticfiles %}
+
+    <link rel="stylesheet" href={% static 'song_info/css/song_info.css' %} />
+</head>
+<body>
+{#   导航栏   #}
+    {% block nav %}
+    <div class="nav">
+          <div class="container">
+            <div class="menu fhNav">
+                <ul class="inner-nav clear">
+                  <li><a href="{% url "index" %}">首页</a></li>
+                  <li><a href="{% url "music" %}">曲库</a></li>
+                  <li ><a href="{% url "singer" %}">搜索</a></li>
+                {% if user.is_authenticated %}
+                    <li id = "index_user"><a href="{% url "personal_show" %}">个人中心</a></li>
+                {% else %}
+                    <li  id = "index_user"><a href="{% url "login" %}">个人中心</a></li>
+                {% endif %}
+                </ul>
+            </div>
+          </div>
+        </div>
+    <div class="index_search">
+
+            <form role="search" action="{% url 'search' %}" method="get">
+                {% csrf_token %}
+                <input type="search"
+                       id="index_search_text"
+                       placeholder="请输入歌名或歌手名："
+                       name = "search_text"
+                        required>
+                <button type="submit" id = "index_search_button"><img src="{% static 'image/search.png' %}"></button>
+            </form>
+    </div>
+{% endblock nav %}
+
+
+{% block every_content %}
+    <div id="song_info_content">
+        <div id = "song_info_content_inner">
+        <div id="song_info_content_img">
+
+        </div>
+            <div id="song_info_content_info">
+                {% for item in songinfo %}
+
+                    <div class = "song_info_content_div">
+                        <div class="song_info_content_title">歌曲名：</div>
+                        <div class="song_info_content_text">{{ item.title }}</div>
+                    </div>
+
+                    <div class = "song_info_content_div">
+                        <div class="song_info_content_title">歌曲ID：</div>
+                        <div class="song_info_content_text">{{ item.song_id }}</div>
+                    </div>
+
+                    <div class = "song_info_content_div">
+                    <div class="song_info_content_title">歌手名：</div>
+                    <div class="song_info_content_text">{{ item.writer }}</div>
+                    </div>
+
+
+                    <div class = "song_info_content_div">
+                        <div class="song_info_content_title">出版日期：</div>
+                        <div class="song_info_content_text"
+                        >{{ item.age }}</div>
+                    </div>
+
+                {% endfor %}
+            </div>
+
+        </div>
+    <div id = "song_info_foot">
+        <div id = "song_info_score">
+            <div>历史评分&nbsp;&nbsp;{{ last_score.p }}</div>
+            <form method="post" action="{% url 'score_submit' %}">
+                {% csrf_token %}
+                <div id = "song_info_score_inner">
+
+                    <div id = "star_content" class="starts">
+
+                        <ul id = "pingStar">
+                            <li rel = "1" title = "特别差，给1分"></li>
+                            <li rel = "2" title = "很差，给2分"></li>
+                            <li rel = "3" title = "一般，给3分"></li>
+                            <li rel = "4" title = "很好，给4分"></li>
+                            <li rel = "5" title = "非常好，给5分"></li>
+                            <span id="dir"></span>
+                        </ul>
+
+                    </div>
+                    <input type="hidden" value="" id = "startP" name="score_input" />
+
+                    <div id = "star_button">
+                        <button type="submit" id = "like_button">
+                            提交
+                        </button>
+                    </div>
+                </div>
+
+
+            </form>
+        </div>
+
+        <div id = "song_info_like">
+                <form method="post" action="{% url 'like_submit' %}">
+                    {% csrf_token %}
+                        <div class="favorite">
+                            {% if like_flag %}
+                                <button type="submit"  class="favo favo-hover"></button>
+
+                            {% else %}
+                                <button type="submit"  class="favo favo-default"></button>
+
+                            {% endif %}
+                        </div>
+                </form>
+            </div>
+    </div>
+
+    </div>
+    <div id = "song_info_review_area">
+        <div>
+            <form method="post" action="{% url 'review_submit' %}">
+                {% csrf_token %}
+                <textarea id = "review_text" name = "song_review_content" placeholder="请输入您的评论："></textarea>
+                <button type="submit" id = "review_button">提交</button>
+            </form>
+        </div>
+    </div>
+    <div id = "song_info_review">
+
+       {% for item in song_review %}
+           <div id = "song_info_review_content">
+               <div id = "song_info_review_content_useID">评论人：{{ item.user_id }}</div>
+               <div id = "song_info_review_content_content">评论内容：{{ item.review }}</div>
+           </div>
+       {% endfor %}
+
+    </div>
+{% endblock every_content %}
+<script type="text/javascript" src="{% static 'index/js/jquery-1.11.1.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'song_info/js/song_info.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,172 @@
+.personal_wrap{
+    position: relative;
+    top: 150px;
+    width: 980px;
+    min-height: 1200px;
+    margin:auto;
+    color: #000000;
+        border-radius: 30px;
+    background-color: rgba(255, 255, 255, 0);
+}
+
+
+.personal_wrap a{
+    color: #000000;
+}
+
+#personal_info{
+    width: 100%;
+    border-radius: 30px;
+    min-height: 400px;
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+#personal_info_content,#personal_his_content,#personal_fav_content{
+    position: relative;
+    top: 30px;
+    width: 80%;
+    min-height: 400px;
+    margin: auto;
+    padding-bottom: 50px;
+}
+
+.personal_info_title{
+    width: 100%;
+    text-align: center;
+}
+#personal_info_content_content{
+    position: relative;
+    top: 50px;
+    left: 100px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+}
+
+.personal_info_content_content_content{
+    height: 45px;
+    display: flex;
+    align-items: center;
+}
+
+.personal_info_content_span{
+    margin-top: 15px;
+    min-width: 120px;
+
+}
+#personal_info_buttton{
+    color: black;
+    position: relative;
+    top:100px;
+    width: 80%;
+    margin: auto;
+    display: flex;
+    font-size: 19px;
+    justify-content:  space-around;
+    cursor: pointer;
+}
+#personal_change_button{
+    font-size: 19px;
+    width: 150px;
+    height: 50px;
+    background-color: #ffffff;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
+.personal_change:hover,#personal_change_button:hover{
+    transform: scale(1.1);
+    font-size: 20px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+}
+
+.personal_change{
+    width: 150px;
+    height: 50px;
+    background-color: #ffffff;
+    cursor: pointer;
+    text-align: center;
+    outline: none;
+    border: none;
+    margin: auto 10px;
+    display: flex;
+    justify-content: center; /* 水平居中 */
+    align-items: center;     /* 垂直居中 */
+}
+.edit_input{
+    position: relative;
+    padding-left: 5px;
+    outline: none;
+    height: 35px;
+    font-size: 18px;
+    cursor: text;
+    border: 1px solid #adadad;
+}
+
+.edit_input:hover{
+        border: 1.5px solid #323232;
+}
+
+.personal_song{
+    width: 80%;
+    min-height: 100px;
+    position: relative;
+    top: 50px;
+    margin: auto;
+}
+
+#personal_fav{
+    position: relative;
+    top: 50px;
+    width: 100%;
+    min-height: 250px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 30px;
+}
+
+#personal_his{
+    position: relative;
+    top: 100px;
+    width: 100%;
+    min-height: 250px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 30px;
+}
+.personal_song_title{
+    display: flex;
+    justify-content:  space-evenly;
+    margin-bottom: 30px;
+}
+
+.personal_song_content{
+    margin-top: 10px;
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content:  space-evenly;
+    position:relative;
+    background-color: rgba(0, 136, 255, 0.49);
+    border-bottom: 1px solid white;
+    border-radius: 15px;
+}
+.personal_song_content:hover{
+    transform: scale(1.1);
+}
+
+.personal_song_span{
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    display: flex;
+    flex-wrap: wrap;
+    cursor: pointer;
+}
+
+.personal_song_content_white{
+    height: 200px;
+    width: 100%;
+}

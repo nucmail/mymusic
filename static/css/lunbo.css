@@ -1,0 +1,66 @@
+@charset "UTF-8";
+*{margin:0;padding:0;list-style-type:none;}
+
+
+	body {
+		min-height: 1500px;
+		padding-bottom: 100px;
+		text-decoration: none;
+	}
+
+
+	.rTop {
+		width: 30px;
+		height: 80px;
+		text-align: center;
+		font-size: 1em;
+		line-height: 30px;
+		color: white;
+		border: 1px solid rgb(199, 199, 199);
+		position: fixed;
+		writing-mode:vertical-lr;
+		right: 8%;
+		bottom: 10%;
+		margin: 5px;
+		cursor: pointer;
+		display: none;
+	}
+
+	.rTop:hover{
+
+		transform: scale(1.1);
+		box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+	}
+
+
+
+/*轮播图*/
+	#lunbo{
+		width:1000px;
+		height: 350px;
+		position: relative;
+		margin: auto;
+		top: 130px;
+		cursor: pointer;
+	}
+	#lunbo ul {
+		height: 100%;
+		width: 100%;
+		padding: 0;
+		/* 垂直居中 */
+		top: 15%;
+		position: relative;
+		list-style: none;
+	}
+
+	/* 移入到轮播图区域把鼠标形状变成‘手’ */
+	#lunbo ul:hover {
+		cursor: pointer;
+	}
+
+	#lunbo ul li {
+		position: absolute;
+		left: 0;
+		/* 过渡属性，让轮播图切换更自然 */
+		transition: 0.4s;
+	}

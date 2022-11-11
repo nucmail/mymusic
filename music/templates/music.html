@@ -1,0 +1,107 @@
+{% extends 'template.html' %}
+<html>
+<head>
+    {% block nav %}
+    {% load staticfiles %}
+    <link rel="stylesheet" href={% static 'music/css/music.css' %}/>
+</head>
+<div class="nav">
+      <div class="container">
+        <div class="menu fhNav">
+            <div class="bottomLine" id = "bottomLine_2"></div>
+            <ul class="inner-nav clear">
+              <li><a href="{% url "index" %}">首页</a></li>
+              <li class="selectedNav"><a href="{% url "music" %}?page==1">曲库</a></li>
+              <li ><a href="{% url "singer" %}">搜索</a></li>
+
+            {% if user.is_authenticated %}
+                <li id = "index_user"><a href="{% url "personal_show" %}">个人中心</a></li>
+            {% else %}
+                <li id = "index_user"><a href="{% url "login" %}">个人中心</a></li>
+            {% endif %}
+
+            </ul>
+        </div>
+      </div>
+    </div>
+<div class="index_search">
+
+        <form role="search" action="{% url 'search' %}" method="get">
+            {% csrf_token %}
+            <input type="search"
+                   id="index_search_text"
+                   placeholder="请输入歌名或歌手名："
+                   name = "search_text"
+                   required
+            >
+
+            <button type="submit" id = "index_search_button">
+                <img src="{% static 'image/search.png'%}">
+            </button>
+        </form>
+
+</div>
+{% endblock nav %}
+{% block every_content %}
+    <div id="music_content">
+        <div id = "music_content_inner">
+            <div id = "music_content_title">
+                <span>
+                    歌曲
+                </span>
+                <span>
+                    专辑
+                </span>
+                <span>
+                    歌手
+                </span>
+                <span>
+                    出版日期
+                </span>
+
+            </div>
+            <div id = "music_content_content">
+                        {% for item in songlist %}
+
+                            <div class = "music_song_div">
+                                <a href="{% url 'song_info'%}?songid={{item.song_id}}"  >
+                                    <div class = "music_song_div_span">{{ item.title }}</div>
+                                </a>
+                                <div class = "music_song_div_span">{{ item.source }}</div>
+                                <div class = "music_song_div_span">{{ item.writer }}</div>
+                                <div class = "music_song_div_span">{{ item.age }}</div>
+
+                            </div>
+
+
+                        {% endfor %}
+            </div>
+            <div class="col-md-4 col-md-offset-3">
+            <nav aria-label="Page navigation">
+              <ul class="pagination">
+                <li class="music_nav_li">
+                  <a href="?page={{ pre_page }}" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                  </a>
+                </li>
+                  {% for index in page_num %}
+                      <li  class="music_nav_li"><a href="?page={{ index }}">{{ index }}</a></li>
+                  {% endfor %}
+
+
+                <li  class="music_nav_li">
+                  <a href="?page={{ next_page }}" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+            </div>
+        </div>
+    </div>
+
+    <div id="content_white">
+
+    </div>
+{% endblock every_content %}
+</html>

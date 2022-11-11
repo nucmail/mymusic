@@ -1,0 +1,108 @@
+{% extends 'personal.html' %}
+
+<html>
+<head>
+{#------------------------------       重要！！！！     ----------------------------------    #}
+
+{#------------------------------       重要！！！！     ----------------------------------    #}
+
+	<title>Music System</title>
+    <base href="/">
+    <meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    {% load staticfiles %}
+    <link rel="stylesheet" href={% static 'personal/css/personal.css' %} />
+    <link rel="stylesheet" href={% static 'personal_edit/edit.css' %} />
+</head>
+<body>
+    {#   导航栏   #}
+    {% block nav %}
+    {{ block.super }}
+    {% endblock nav %}
+
+{#******************************   内容     ********************************* #}
+{% block every_content %}
+
+        {{ block.super }}
+
+{% endblock every_content %}
+
+{% block user_info %}
+
+<form action="{% url 'personal_edit' %}" method="post">
+{% csrf_token %}
+    <div id = "personal_info_content_content">
+
+        <div class = "personal_info_content_content_content">
+            <span class="personal_info_content_span"><b>用户ID：</b></span>
+            <span class="personal_info_content_span">{{ user.username }}</span>
+        </div>
+
+        <div class = "personal_info_content_content_content">
+            <span class="personal_info_content_span"><b>用户名：</b></span>
+            <span class="personal_info_content_span">
+                <input value="{{ user_name }}" name = "edit_name" class="edit_input">
+            </span>
+        </div>
+
+        <div class = "personal_info_content_content_content">
+            <span class="personal_info_content_span"><b>用户邮箱：</b></span>
+            <span class="personal_info_content_span">
+                <input type="email" value="{{ user_email }}" name = "edit_email" class="edit_input">
+            </span>
+        </div>
+
+        <div class = "personal_info_content_content_content">
+            <span class="personal_info_content_span"><b>手机号：</b></span>
+            <span class="personal_info_content_span">
+                <input value="{{ user_phone }}" name = "edit_phone" class="edit_input">
+            </span>
+        </div>
+                <div class = "personal_info_content_content_content">
+            <span class="personal_info_content_span"><b>密码：</b></span>
+            <span class="personal_info_content_span">
+                <input type="password" name = "edit_password" class="edit_input">
+            </span>
+        </div>
+
+    </div>
+    <div id = "personal_info_buttton">
+        <div class = "personal_change">
+            <span>
+                <button type="submit" id = "personal_change_button">
+                    确认修改
+                </button>
+            </span>
+
+        </div>
+        <div class = "personal_change">
+            <span>
+               <a href="{% url 'personal_show' %}">
+                   取消
+               </a>
+            </span>
+
+        </div>
+        <div class = "personal_change">
+            <span>
+                <a href="{% url 'logout' %}">
+                    退出
+                </a>
+            </span>
+
+        </div>
+
+    </div>
+</form>
+{% endblock user_info %}
+
+
+{% if register_msg %}
+    <script>
+            alert('{{ error }} ')
+    </script>
+{% endif %}
+</body>
+</html>

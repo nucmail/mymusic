@@ -1,0 +1,61 @@
+
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>注册</title>
+  {% load staticfiles %}
+  <link rel="stylesheet" href={% static 'register/css/style.css'%}>
+</head>
+
+<body>
+  <main>
+    <form class="form"method="post" action="{% url 'register' %}">
+      {% csrf_token %}
+      <div class="form__cover"></div>
+
+      <div class="form__content">
+        <h1>Register</h1>
+        <div class="styled-input">
+          <input type="text" class="styled-input__input" name = "user_id_register" autocomplete="off">
+          <div class="styled-input__placeholder"> <span class="styled-input__placeholder-text">Username</span> </div>
+          <div class="styled-input__circle"></div>
+        </div>
+        <div class="styled-input">
+          <input type="password" class="styled-input__input" name = "user_password_register">
+          <div class="styled-input__placeholder"> <span class="styled-input__placeholder-text">Password</span> </div>
+          <div class="styled-input__circle"></div>
+        </div>
+        <!-- <div>
+          <a href="{% url 'register' %}" class="link">现在注册！</a>
+          <a href="#" class="link" onclick="alert('请联系管理员！')">忘记密码？</a>
+        </div> -->
+        <div>
+          <a href="{% url 'login' %}" class="link">去登录！</a>
+          <a href="#" class="link"  onclick="alert('请联系管理员！')">忘记密码？</a>
+      </div>
+        <button type="submit" class="styled-button"> <span class="styled-button__real-text-holder"> <span
+              class="styled-button__real-text">Submit</span> <span class="styled-button__moving-block face"> <span
+                class="styled-button__text-holder"> <span class="styled-button__text">Submit</span> </span> </span><span
+              class="styled-button__moving-block back"> <span class="styled-button__text-holder"> <span
+                  class="styled-button__text">Submit</span> </span> </span> </span> </button>
+      </div>
+    </form>
+  </main>
+  {% if msg %}
+        <script>
+            alert('{{ error }}')
+        </script>
+    {% endif %}
+  {% if register_msg %}
+  <script>
+  alert('{{ error }}')
+  </script>
+
+  {% endif %}
+<script src={% static "register/js/index.js" %} type="text/javascript"></script>
+  <script src={% static "js/jquery-1.11.1.min.js" %} type="text/javascript"></script>
+<script src={% static "js/backgroud.js" %} type="text/javascript"></script>
+</body>
+
+</html>
